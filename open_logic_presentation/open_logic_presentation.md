@@ -98,6 +98,29 @@ Beyond individual projects, portability benefits the broader ecosystem. When dev
 
 To ensure that the components in the Open Logic Library are trustworthy, a robust Continuous Integration (CI) setup is in place. This CI pipeline verifies all components through simulation, performs linting to enforce the prescribed coding standards, and synthesizes the designs using all tools officially supported by Open Logic.
 
+# 5.1. Trustable Code
+
+## Slide
+
+## Narration
+
+To illustrate the importance of this CI setup, I’ll use an example.
+
+Open Logic provides a generic CRC component, but for my use case, I needed an additional feature. Originally, this component only supported calculating the CRC over the entire data bus. In my example, I was working with a 16-bit data bus. When sending a packet, the last data beat could contain either two bytes or just one byte. If the last beat contained only a single byte, the original component could not handle it.
+
+To address this, I submitted a pull request adding a **Byte Enable (`In_Be`) port**. This change was fully backward compatible: if the feature was not needed, the port could simply be ignored. I also created a new testbench specifically for this feature, ran the tests, and verified that the CI pipeline for linting and simulation passed without issues.
+
+Thanks to the CI pipeline for synthesis, I discovered that I had added some HDL code that was not synthesizable. The pipeline allowed me to quickly identify and fix the issue, preventing a broken component from being added to Open Logic. This example clearly shows how CI not only ensures functional correctness but also guards against introducing problematic code.
+
+
+# 5.2. Trustable Code
+
+## Slide
+
+## Narration
+
+After my pull request adding a byte-enable port was merged into the Open Logic develop branch, the maintainer added support for another vendor, CologneChip, which uses Yosys for synthesis. It was then discovered that my addition failed only in Yosys. On the slide, you can see the elegant one-liner which I commented out, which worked with every vendor tool except Yosys. Because we are committed to supporting as many vendor tools as possible, I rewrote that one-liner into the five lines you see on the slide.
+
 # 6. Free Tooling
 
 ## Slide
