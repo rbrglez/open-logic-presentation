@@ -76,9 +76,7 @@ If we look at the implementation of olo_base_fifo_sync, it may at first seem dau
 
 - pure HDL
 
-Open Logic components are written in pure HDL. This means that it can be used on any device from any vendor. Currently, Open Logic explicitly supports AMD, Altera, Microchip, Efinix, Gowin, and CologneChip.
-
-It likely works on other vendors as well since it is written in pure HDL. However, for Open Logic to officially support a vendor, we must validate it using that vendor’s supported tools and development board. Because these tools and boards are not free, unless the vendor provides a development board and tool licenses or we purchase them ourselves, we cannot perform the required testing. Without this validation, we cannot explicitly claim that Open Logic supports that vendor.
+Because it is written in pure HDL it should run on any toolchain but currently only the ones listed are contained in regression testing.
 
 Open Logic is written in VHDL with a clear commitment to be usable from Verilog. All Open Logic components expose only generics and ports whose types are compatible with Verilog, allowing them to be instantiated through Verilog wrapper code in mixed-language toolchains.
 
