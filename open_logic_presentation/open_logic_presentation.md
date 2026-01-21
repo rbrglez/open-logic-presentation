@@ -32,65 +32,88 @@ I started using Open Logic and promoting it internally at Aviat. Today, it is us
 - Its not a collection of full IP cores (Designed to support and accelerate your own IP development)
 ## Narration
 
-Open-Logic is an HDL library that provides a set of reusable, well-tested building blocks, including FIFOs, clock-domain crossings, arbiters, and many more.
-
-The goal is to avoid rewriting the same low-level infrastructure in every project. Open Logic does not try to solve your system for you. Instead, it provides reliable foundations that let you focus on developing your own IP and system-specific logic.
-
 Open Logic aims to be for HDL what the C++ Standard Library is for C++
+
+It is an HDL library that provides a set of reusable, well-tested building blocks, including FIFOs, clock-domain crossings, arbiters, and many more.
 
 Unlike OpenCores, which offers complete, ready-to-use IP cores, Open-Logic provides only basic, reusable components that designers can use to build their own IP cores.
 
-# 2. What is Open-Logic 
+# 2. Built for Users 
 
 ## Slide
 
-- built from a users perspective
-	- focus on thorough documentation
-	- metrics for code quality
-	- tutorials
-	- simplicity / ease of use
+- focus on thorough documentation
+- metrics for code quality
+- tutorials
+- simplicity / ease of use
 ## Narration
 
 It’s built entirely from the user’s perspective, with a strong emphasis on thorough documentation. Each component also includes live code quality metrics showing statement coverage, branch coverage, and any known issues, so users can easily track the quality and reliability of the component over time and see if any component’s quality degrades or improves.
 
-It comes with tutorials. So you can easily follow them to integrate Open-Logic in any of the supported toolchains.
+It comes with tutorials. So you can easily follow them to integrate Open-Logic in any of the supported tool-chains.
 
 There is a strong emphasis on simplicity and ease of use. The best way to illustrate this is with an example. 
 
 If we look at the implementation of olo_base_fifo_sync, it may at first seem daunting due to the large number of generics and ports. However, a closer inspection shows that many of these generics and ports have default values and can be omitted if they are not relevant. For example, the FIFO instantiation shown below uses only two generics. Apart from the clock and reset, it exposes just four additional ports, two for the input path and two for the output path.
 
-
-# 3. Philosophy
+# 3. Language
 
 ## Slide
 
-- pure HDL
-	- any device (AMD, Altera, Microchip, Efinix, Gowin)
-	- written in VHDL
-	- Commitment for Usability from Verilog
-- Trustable Code
-	- proper CI setup (Simulation, Linting, Synthesis)
-	- 100% Statement/Branch Coverage
-	- Issue Indicator
-- FreeTooling
-	- Enabler for Community
+-  Written in VHDL
+- Commitment to be usable from Verilog
+
 ## Narration
 
-- pure HDL
+Open Logic is written in VHDL with a clear commitment to be usable from Verilog. All components expose only generics and ports whose types are compatible with Verilog, allowing them to be instantiated through Verilog wrapper code in mixed-language tool-chains.
 
-Because it is written in pure HDL it should run on any toolchain but currently only the ones listed are contained in regression testing.
+# 4. Key Benefits
 
-Open Logic is written in VHDL with a clear commitment to be usable from Verilog. All Open Logic components expose only generics and ports whose types are compatible with Verilog, allowing them to be instantiated through Verilog wrapper code in mixed-language toolchains.
+## Slide
 
-- Trustable Code
+- Reusable Building Blocks
+- Device/Vendor Portable
+	- AMD, Altera, Microchip, Efinix, Gowin, CologneChip
+	- Choose the best fitting device
+- Reduced Risk
+- Freedom to Choose
+## Narration
+
+Using Open Logic leads to higher-quality, more reusable code. By relying on standardized, well-tested components, designs become easier to maintain and reuse.
+
+Because it is written in pure HDL, Open Logic is inherently portable and should run on any toolchain, though regression testing currently covers only the officially supported vendors. By avoiding vendor-specific dependencies, designs can be moved easily between FPGA devices, enabling vendor-agnostic flexibility.
+
+This portability provides resilience against evolving requirements, supply-chain disruptions, trade restrictions, tariffs, and device end-of-life. Projects can switch to available alternatives, simplify migration to newer devices, extend the usable lifetime of designs, and reduce long-term maintenance risk.
+
+Beyond individual projects, portability benefits the broader ecosystem. When developers are free to choose their tools, vendors must compete on quality, support, and innovation rather than lock-in, ultimately leading to better devices, better tools, and better outcomes for everyone.
+
+# 5. Trustable Code
+
+## Slide
+
+- proper CI setup (Simulation, Linting, Synthesis)
+- 100% Statement/Branch Coverage
+- Issue Indicator
+## Narration
 
 To ensure that the components in the Open Logic Library are trustworthy, a robust Continuous Integration (CI) setup is in place. This CI pipeline verifies all components through simulation, performs linting to enforce the prescribed coding standards, and synthesizes the designs using all tools officially supported by Open Logic.
 
-- FreeTooling
+# 6. Free Tooling
+
+## Slide
+
+- Documentation: wavedrom
+- Linter: VSG
+- Simulator: GHDL, NVC
+- Testbench framework: Vunit
+- Synthesis: Yosys
+- Implementation: nextpnr
+
+## Narration
 
 By relying heavily on open-source tools, Open Logic can be used and contributed to without requiring expensive vendor licenses. While commercial tools can still be used if available, they are not mandatory. For simulation, either GHDL or NVC can be used. Testbenches are written using the VUnit framework, which is also open source. For linting, Open Logic uses VSG, another open-source tool. In addition, Open Logic recently added official support for open-source synthesis using Yosys and implementation using nextpnr, which are used for the CologneChip vendor.
 
-# 4. Why use Open Logic?
+# 7. Why use Open Logic?
 
 ## Slide
 
@@ -102,41 +125,14 @@ By relying heavily on open-source tools, Open Logic can be used and contributed 
 
 ## Narration
 
-- Don't waste time on developing code that exists
-- Don't take risks debugging your own CDC/FIFO/...
-- Spend your time on your application ..
-	-  .. not on well known Basic Elements
-
 There is little value in spending time developing code that already exists. Doing so also introduces unnecessary risk, particularly when re-implementing complex and error-prone building blocks such as clock domain crossings, FIFOs, and similar infrastructure components.
 If you adopt Open Logic it lowers the likelihood that you will need to debug fundamental building blocks. These blocks are widely used, well reviewed, and continuously tested. If an error is discovered, raising an issue on GitHub gives you access to a broad community of engineers who can help diagnose and resolve the problem. Any fix then improves the building block for everyone, not just for you.
 
 Your time is better spent developing your application, not reinventing well-known fundamental components. It is unlikely that a custom FIFO will significantly outperform a mature, widely used implementation. By relying on established, documented, and thoroughly tested building blocks, you reduce risk, improve reliability, and accelerate development, allowing you to focus on what truly differentiates your design and where your expertise matters most.
 
-- Why Not? It's free
-
 Why not use Open Logic? It is free, so the barrier to entry is very low. With only a small time investment, you can determine whether it adds value to your workflow.
 
-# 5. Key Benefits
-
-## Slide
-
-- Reusable Building Blocks
-- Device/Vendor Portable
-- Reduced Risk
-- Freedom to Choose
-## Narration
-
-Using Open Logic leads to higher-quality, more reusable code. By relying on standardized and well-tested components, designs become easier to maintain, easier to reuse, and less error-prone over time.
-
-As project requirements evolve, new devices may emerge that better fit performance, cost, or availability constraints. Adopting such devices should not require rewriting large portions of the code base. This flexibility is only possible when designs are portable across devices and vendors, allowing teams to choose the best technology for each application.
-
-Open Logic enables this vendor-agnostic portability without additional cost. By avoiding vendor-specific dependencies, designs can be moved more easily between FPGA devices. Recent supply-chain disruptions have demonstrated the risk of relying on a single device or vendor. Portable code makes it possible to switch to alternatives that are actually available.
-
-Portability also reduces long-term and external risks. Trade restrictions, tariffs, and device end-of-life events can all threaten the viability of a design. Writing portable code from the outset simplifies migration to newer devices, extends the usable lifetime of a project, and lowers long-term maintenance risk.
-
-Beyond individual projects, portability benefits the broader ecosystem. When developers are free to choose their tools, vendors must compete on quality, support, and innovation rather than lock-in. This freedom ultimately leads to better devices, better tools, and better outcomes for everyone.
-
-# 6. Proprietary vs. Open-Source
+# 8. Proprietary vs. Open-Source
 
 ## Slide
 
@@ -152,10 +148,10 @@ Open Logic, by contrast, is open source. It is reviewed by a much larger group o
 
 Infrastructure projects like Open Logic strengthen the entire ecosystem. We should not be competing over who can build the best basic components. Our real value lies in designing and delivering the best applications on top of them.
 
-# 8. Content Overview
+# 9. Content Overview
 
 
-# 9. Call to action
+# 10. Call to action
 
 ## Slides
 
