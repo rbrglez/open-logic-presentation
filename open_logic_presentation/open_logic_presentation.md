@@ -126,13 +126,22 @@ Why not use Open Logic? It is free, so the barrier to entry is very low. With on
 	- Move along with technology
 	- choose the best fitting device
 - Reward Innovative Vendors
+
+- Lower Debugging Risk
+    - FIFOs, CDCs, ...
+- Vendor-Agnostic, Portable FPGA Design
+- Mitigates Supply-Chain Disruptions
+- Reduces Exposure to Trade Restrictions
+- Protection Against Device End-of-Life (EOL)
 ## Narration
 
 Using Open Logic leads to higher-quality, more reusable code. By relying on standardized and well-tested components, your designs become easier to maintain and reuse.
 
 When working on a project, new devices may emerge that better fit your requirements. In such cases, you want the freedom to adopt that technology without rewriting large parts of your code base. This is only possible if your code is portable, ideally not just across devices but also across vendors. That freedom allows you to select the best device for your application, ultimately improving its overall quality.
 
-Open Logic also makes code more reusable. By avoiding hard-coded, vendor-specific macros, the code becomes cleaner and easier to adapt. 
+Open Logic also enables vendor-agnostic designs at no extra cost. By avoiding vendor-specific dependencies, your design becomes portable and can be moved more easily between FPGA devices. Recent events such as COVID-related supply-chain disruptions have shown how risky single-device or single-vendor dependence can be. When a targeted FPGA is unavailable, portable code allows you to switch to an alternative device that is actually in stock.
+
+In today’s environment of tariffs and trade restrictions, this portability further reduces exposure to geopolitical risk. For long-lived projects, it also provides protection against device end-of-life. Writing portable code from the start makes it far easier to migrate to newer devices in the future, extending the usable lifetime of the design and reducing long-term risk.
 
 Finally, portable code benefits the entire ecosystem. When developers are not locked into a single vendor, they can choose the most innovative and well-supported devices. This rewards vendors who deliver high-quality products, strong support, and meaningful innovation. It is unfortunate when vendor lock-in prevents us from adopting better solutions. Developers should have the freedom to choose, and that freedom encourages vendors to compete on quality rather than lock-in.
 
@@ -152,22 +161,6 @@ Consider proprietary in-house HDL Library. How many engineers have actually revi
 Open Logic, by contrast, is open source. It is reviewed by a much larger group of engineers and supported by regularly scheduled CI pipelines. When anyone discovers a bug or issue, it is quickly addressed and fixed for the benefit of the entire community. This shared maintenance model significantly reduces the ongoing burden on individual teams.
 
 Infrastructure projects like Open Logic strengthen the entire ecosystem. We should not be competing over who can build the best basic components. Our real value lies in designing and delivering the best applications on top of them.
-
-# 7.  Reduce Risk
-
-## Slide
-
-- Lower Debugging Risk
-    - FIFOs, CDCs, ...
-- Vendor-Agnostic, Portable FPGA Design
-- Mitigates Supply-Chain Disruptions
-- Reduces Exposure to Trade Restrictions
-- Protection Against Device End-of-Life (EOL)
-## Narration
-
-Open Logic also enables vendor-agnostic designs at no extra cost. By avoiding vendor-specific dependencies, your design becomes portable and can be moved more easily between FPGA devices. Recent events such as COVID-related supply-chain disruptions have shown how risky single-device or single-vendor dependence can be. When a targeted FPGA is unavailable, portable code allows you to switch to an alternative device that is actually in stock.
-
-In today’s environment of tariffs and trade restrictions, this portability further reduces exposure to geopolitical risk. For long-lived projects, it also provides protection against device end-of-life. Writing portable code from the start makes it far easier to migrate to newer devices in the future, extending the usable lifetime of the design and reducing long-term risk.
 
 # 8. Content Overview
 
