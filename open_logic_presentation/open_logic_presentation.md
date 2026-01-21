@@ -110,6 +110,7 @@ By relying heavily on open-source tools, Open Logic can be used and contributed 
 	-  .. not on well known Basic Elements
 
 There is little value in spending time developing code that already exists. Doing so also introduces unnecessary risk, particularly when re-implementing complex and error-prone building blocks such as clock domain crossings, FIFOs, and similar infrastructure components.
+If you adopt Open Logic it lowers the likelihood that you will need to debug fundamental building blocks. These blocks are widely used, well reviewed, and continuously tested. If an error is discovered, raising an issue on GitHub gives you access to a broad community of engineers who can help diagnose and resolve the problem. Any fix then improves the building block for everyone, not just for you.
 
 Your time is better spent developing your application, not reinventing well-known fundamental components. It is unlikely that a custom FIFO will significantly outperform a mature, widely used implementation. By relying on established, documented, and thoroughly tested building blocks, you reduce risk, improve reliability, and accelerate development, allowing you to focus on what truly differentiates your design and where your expertise matters most.
 
@@ -163,8 +164,6 @@ Infrastructure projects like Open Logic strengthen the entire ecosystem. We shou
 - Reduces Exposure to Trade Restrictions
 - Protection Against Device End-of-Life (EOL)
 ## Narration
-
-Adopting Open Logic reduces project risk in several important ways. First, it lowers the likelihood that you will need to debug fundamental building blocks such as FIFOs, clock-domain crossings (CDCs), arbiters, and similar components. These components are widely used, well reviewed, and continuously tested. If an error is discovered, raising an issue on GitHub gives access to a broad community of engineers who can help diagnose and resolve the problem. Any fix then improves the building block for everyone, not just for you.
 
 Open Logic also enables vendor-agnostic designs at no extra cost. By avoiding vendor-specific dependencies, your design becomes portable and can be moved more easily between FPGA devices. Recent events such as COVID-related supply-chain disruptions have shown how risky single-device or single-vendor dependence can be. When a targeted FPGA is unavailable, portable code allows you to switch to an alternative device that is actually in stock.
 
