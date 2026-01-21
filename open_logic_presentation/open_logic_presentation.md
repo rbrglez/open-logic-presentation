@@ -36,6 +36,8 @@ Open-Logic is an HDL library that provides a set of reusable, well-tested buildi
 
 The goal is to avoid rewriting the same low-level infrastructure in every project. Open Logic does not try to solve your system for you. Instead, it provides reliable foundations that let you focus on developing your own IP and system-specific logic.
 
+Open Logic aims to be for HDL what the C++ Standard Library is for C++
+
 Unlike OpenCores, which offers complete, ready-to-use IP cores, Open-Logic provides only basic, reusable components that designers can use to build their own IP cores.
 
 # 2. What is Open-Logic 
