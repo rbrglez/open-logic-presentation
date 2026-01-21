@@ -116,32 +116,25 @@ Your time is better spent developing your application, not reinventing well-know
 
 Why not use Open Logic? It is free, so the barrier to entry is very low. With only a small time investment, you can determine whether it adds value to your workflow.
 
-# 5. Better Quality
+# 5. Key Benefits
 
 ## Slide
 
-- Portable/Reusable code
-	- Move along with technology
-	- choose the best fitting device
-- Reward Innovative Vendors
-
-- Lower Debugging Risk
-    - FIFOs, CDCs, ...
-- Vendor-Agnostic, Portable FPGA Design
-- Mitigates Supply-Chain Disruptions
-- Reduces Exposure to Trade Restrictions
-- Protection Against Device End-of-Life (EOL)
+- Reusable Building Blocks
+- Device/Vendor Portable
+- Reduced Risk
+- Freedom to Choose
 ## Narration
 
-Using Open Logic leads to higher-quality, more reusable code. By relying on standardized and well-tested components, your designs become easier to maintain and reuse.
+Using Open Logic leads to higher-quality, more reusable code. By relying on standardized and well-tested components, designs become easier to maintain, easier to reuse, and less error-prone over time.
 
-When working on a project, new devices may emerge that better fit your requirements. In such cases, you want the freedom to adopt that technology without rewriting large parts of your code base. This is only possible if your code is portable, ideally not just across devices but also across vendors. That freedom allows you to select the best device for your application, ultimately improving its overall quality.
+As project requirements evolve, new devices may emerge that better fit performance, cost, or availability constraints. Adopting such devices should not require rewriting large portions of the code base. This flexibility is only possible when designs are portable across devices and vendors, allowing teams to choose the best technology for each application.
 
-Open Logic also enables vendor-agnostic designs at no extra cost. By avoiding vendor-specific dependencies, your design becomes portable and can be moved more easily between FPGA devices. Recent events such as COVID-related supply-chain disruptions have shown how risky single-device or single-vendor dependence can be. When a targeted FPGA is unavailable, portable code allows you to switch to an alternative device that is actually in stock.
+Open Logic enables this vendor-agnostic portability without additional cost. By avoiding vendor-specific dependencies, designs can be moved more easily between FPGA devices. Recent supply-chain disruptions have demonstrated the risk of relying on a single device or vendor. Portable code makes it possible to switch to alternatives that are actually available.
 
-In today’s environment of tariffs and trade restrictions, this portability further reduces exposure to geopolitical risk. For long-lived projects, it also provides protection against device end-of-life. Writing portable code from the start makes it far easier to migrate to newer devices in the future, extending the usable lifetime of the design and reducing long-term risk.
+Portability also reduces long-term and external risks. Trade restrictions, tariffs, and device end-of-life events can all threaten the viability of a design. Writing portable code from the outset simplifies migration to newer devices, extends the usable lifetime of a project, and lowers long-term maintenance risk.
 
-Finally, portable code benefits the entire ecosystem. When developers are not locked into a single vendor, they can choose the most innovative and well-supported devices. This rewards vendors who deliver high-quality products, strong support, and meaningful innovation. It is unfortunate when vendor lock-in prevents us from adopting better solutions. Developers should have the freedom to choose, and that freedom encourages vendors to compete on quality rather than lock-in.
+Beyond individual projects, portability benefits the broader ecosystem. When developers are free to choose their tools, vendors must compete on quality, support, and innovation rather than lock-in. This freedom ultimately leads to better devices, better tools, and better outcomes for everyone.
 
 # 6. Proprietary vs. Open-Source
 
