@@ -1,4 +1,4 @@
-# 0. Who Am I
+# 0.0. Who Am I
 
 ## Slide
 
@@ -21,7 +21,7 @@ This question led me to look for an open-source HDL library. I found several, bu
 
 I started using Open Logic and promoting it internally at Aviat. Today, it is used in one official project and several proof-of-concept projects. Along the way, I also became a minor contributor.
 
-# 1. What Is Open-Logic
+# 1.0. What Is Open-Logic
 
 ## Slide
 
@@ -32,13 +32,13 @@ I started using Open Logic and promoting it internally at Aviat. Today, it is us
 - Its not a collection of full IP cores (Designed to support and accelerate your own IP development)
 ## Narration
 
-Open Logic aims to be for HDL what the C++ Standard Library is for C++
+Open Logic aims to be for HDL what the Standard Library is for C++
 
 It is an HDL library that provides a set of reusable, well-tested building blocks, including FIFOs, clock-domain crossings, arbiters, and many more.
 
 Unlike OpenCores, which offers complete, ready-to-use IP cores, Open-Logic provides only basic, reusable components that designers can use to build their own IP cores.
 
-# 2. Built for Users 
+# 2.0. Built for Users 
 
 ## Slide
 
@@ -54,9 +54,13 @@ It comes with tutorials. So you can easily follow them to integrate Open-Logic i
 
 There is a strong emphasis on simplicity and ease of use. The best way to illustrate this is with an example. 
 
-If we look at the implementation of olo_base_fifo_sync, it may at first seem daunting due to the large number of generics and ports. However, a closer inspection shows that many of these generics and ports have default values and can be omitted if they are not relevant. For example, the FIFO instantiation shown below uses only two generics. Apart from the clock and reset, it exposes just four additional ports, two for the input path and two for the output path.
+# 2.0. Built for Users 
 
-# 3. Language
+## Narration
+
+If we look at the implementation of olo_base_fifo_sync,  on the right, it may at first seem daunting due to the large number of generics and ports. However, a closer inspection shows that many of these generics and ports have default values and can be omitted if they are not relevant. For example, the FIFO instantiation taken from the vivado tutorial of the open-logic, shown on the left uses only two generics. Apart from the clock and reset, it exposes just four additional ports, two for the input interface and two for the output interface.
+
+# 3.0. Language
 
 ## Slide
 
@@ -67,7 +71,7 @@ If we look at the implementation of olo_base_fifo_sync, it may at first seem dau
 
 Open Logic is written in VHDL with a clear commitment to be usable from Verilog. All components expose only generics and ports whose types are compatible with Verilog, allowing them to be instantiated through Verilog wrapper code in mixed-language tool-chains.
 
-# 4. Key Benefits
+# 4.0. Key Benefits
 
 ## Slide
 
@@ -81,13 +85,13 @@ Open Logic is written in VHDL with a clear commitment to be usable from Verilog.
 
 Using Open Logic leads to higher-quality, more reusable code. By relying on standardized, well-tested components, designs become easier to maintain and reuse.
 
-Because it is written in pure HDL, Open Logic is inherently portable and should run on any toolchain, though regression testing currently covers only the officially supported vendors. By avoiding vendor-specific dependencies, designs can be moved easily between FPGA devices, enabling vendor-agnostic flexibility.
+Because it is written in pure HDL, Open Logic is inherently portable and should run on any toolchain, though regression testing currently covers only the officially supported vendors. By avoiding vendor-specific macros, designs can be moved easily between FPGA devices.
 
 This portability provides resilience against evolving requirements, supply-chain disruptions, trade restrictions, tariffs, and device end-of-life. Projects can switch to available alternatives, simplify migration to newer devices, extend the usable lifetime of designs, and reduce long-term maintenance risk.
 
-Beyond individual projects, portability benefits the broader ecosystem. When developers are free to choose their tools, vendors must compete on quality, support, and innovation rather than lock-in, ultimately leading to better devices, better tools, and better outcomes for everyone.
+Beyond individual projects, portability benefits the broader FPGA ecosystem. When developers are free to choose their tools, vendors must compete on quality, support, and innovation rather than lock-in, ultimately leading to better devices, better tools, and better outcomes for everyone.
 
-# 5. Trustable Code
+# 5.0. Trustable Code
 
 ## Slide
 
@@ -96,7 +100,7 @@ Beyond individual projects, portability benefits the broader ecosystem. When dev
 - Issue Indicator
 ## Narration
 
-To ensure that the components in the Open Logic Library are trustworthy, a robust Continuous Integration (CI) setup is in place. This CI pipeline verifies all components through simulation, performs linting to enforce the prescribed coding standards, and synthesizes the designs using all tools officially supported by Open Logic.
+To ensure that the components in the Open Logic Library are trustworthy, a robust Continuous Integration (CI) setup is in place. This CI pipeline verifies all components pass simulation, performs linting to enforce the prescribed coding standards, and synthesizes the components using all tools officially supported by Open Logic.
 
 # 5.1. Trustable Code
 
@@ -106,12 +110,11 @@ To ensure that the components in the Open Logic Library are trustworthy, a robus
 
 To illustrate the importance of this CI setup, I’ll use an example.
 
-Open Logic provides a generic CRC component, but for my use case, I needed an additional feature. Originally, this component only supported calculating the CRC over the entire data bus. In my example, I was working with a 16-bit data bus. When sending a packet, the last data beat could contain either two bytes or just one byte. If the last beat contained only a single byte, the original component could not handle it.
+Open Logic provides a generic CRC component, but for my use case, I needed an additional feature. Originally, this component only supported calculating the CRC over the entire data bus. In my example, I was working with a 16-bit data bus. When sending a packet, the last data beat, that is, a single AXI-Stream data transfer in one clock cycle, could contain either two bytes (16 bits) or only one byte (8 bits). If the final beat contained just a single byte, the original component could not calculate CRC for the packet.
 
-To address this, I submitted a pull request adding a **Byte Enable (`In_Be`) port**. This change was fully backward compatible: if the feature was not needed, the port could simply be ignored. I also created a new testbench specifically for this feature, ran the tests, and verified that the CI pipeline for linting and simulation passed without issues.
+To address this, I submitted a pull request adding a Byte Enable (`In_Be`) port. This change was fully backward compatible: if the feature was not needed, the port could simply be ignored. I also created a new testbench specifically for this feature, ran the tests, and verified that the CI pipeline for linting and simulation passed without issues.
 
-Thanks to the CI pipeline for synthesis, I discovered that I had added some HDL code that was not synthesizable. The pipeline allowed me to quickly identify and fix the issue, preventing a broken component from being added to Open Logic. This example clearly shows how CI not only ensures functional correctness but also guards against introducing problematic code.
-
+Thanks to the CI pipeline for synthesis, I discovered that I had added HDL code that was not synthesizable. An excerpt of the un-synthesizable for loop is shown on the right, and below it is the corrected version of the loop that can be synthesized. The pipeline allowed me to quickly identify and fix the issue, preventing a broken component from being added to Open Logic. This example clearly shows how CI not only ensures functional correctness but also guards against introducing unsynthesizable code.
 
 # 5.2. Trustable Code
 
@@ -119,7 +122,9 @@ Thanks to the CI pipeline for synthesis, I discovered that I had added some HDL 
 
 ## Narration
 
-After my pull request adding a byte-enable port was merged into the Open Logic develop branch, the maintainer added support for another vendor, CologneChip, which uses Yosys for synthesis. It was then discovered that my addition failed only in Yosys. On the slide, you can see the elegant one-liner which I commented out, which worked with every vendor tool except Yosys. Because we are committed to supporting as many vendor tools as possible, I rewrote that one-liner into the five lines you see on the slide.
+After my pull request adding a byte-enable port was merged into Open Logic, the maintainer added support for another vendor, CologneChip, which uses Yosys for synthesis. During this process, it was discovered that a different block of code in the CRC component failed specifically when synthesized with Yosys.
+
+On the slide, you can see the elegant one-liner that I commented out; it worked correctly with all other vendor tools but not with Yosys. Since we are committed to supporting as many vendor toolchains as possible, I rewrote that one-liner into the five-line implementation shown on the slide.
 
 # 6. Free Tooling
 
@@ -134,7 +139,7 @@ After my pull request adding a byte-enable port was merged into the Open Logic d
 
 ## Narration
 
-By relying heavily on open-source tools, Open Logic can be used and contributed to without requiring expensive vendor licenses. While commercial tools can still be used if available, they are not mandatory. For simulation, either GHDL or NVC can be used. Testbenches are written using the VUnit framework, which is also open source. For linting, Open Logic uses VSG, another open-source tool. In addition, Open Logic recently added official support for open-source synthesis using Yosys and implementation using nextpnr, which are used for the CologneChip vendor.
+By relying heavily on open-source tools, Open Logic can be used and contributed to without requiring expensive vendor licenses. While commercial tools can still be used if available, they are not mandatory. For documentation, Wavedrom is used to generate waveforms. Linting is performed with VSG, while simulations can be run using either GHDL or NVC. Testbenches are written with the VUnit framework. Finally,  synthesis and implementation can be carried out using Yosys and nextpnr, which are used for the CologneChip vendor. This fully open-source toolchain ensures that Open Logic remains accessible to anyone.
 
 # 7. Why use Open Logic?
 
