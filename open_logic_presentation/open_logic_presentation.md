@@ -143,16 +143,15 @@ In today’s environment of tariffs and trade restrictions, this portability fur
 
 Finally, portable code benefits the entire ecosystem. When developers are not locked into a single vendor, they can choose the most innovative and well-supported devices. This rewards vendors who deliver high-quality products, strong support, and meaningful innovation. It is unfortunate when vendor lock-in prevents us from adopting better solutions. Developers should have the freedom to choose, and that freedom encourages vendors to compete on quality rather than lock-in.
 
-# 6. Lower Cost
+# 6. Proprietary vs. Open-Source
 
 ## Slide
 
-- Reduced Development Effort
-- Reduced Maintenance Effort
+- Number of Reviews
+- Testing
+- Maintenance
 
 ## Narration
-
-Adopting Open Logic can significantly reduce development and maintenance effort, leading to lower overall costs, since it eliminates the need to re-implement basic building blocks for devices from different vendors or even for different devices from the same vendor.
 
 Consider proprietary in-house HDL Library. How many engineers have actually reviewed it, and how confident are you that is is free of errors? How often is it tested? Do you even have continuous integration pipelines in place, and if so, how frequently are they run? In many cases, these HDL libraries receive limited scrutiny and limited long-term maintenance.
 
