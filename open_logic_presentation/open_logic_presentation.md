@@ -86,8 +86,6 @@ Open Logic is written in VHDL with a clear commitment to be usable from Verilog.
 
 To ensure that the components in the Open Logic Library are trustworthy, a robust Continuous Integration (CI) setup is in place. This CI pipeline verifies all components through simulation, performs linting to enforce the prescribed coding standards, and synthesizes the designs using all tools officially supported by Open Logic.
 
-The documentation includes badges for each component that display the current statement and branch coverage as well as any open issues. These badges make it easy to track the verification status and monitor code quality over time, helping identify if a component’s quality degrades.
-
 - FreeTooling
 
 By relying heavily on open-source tools, Open Logic can be used and contributed to without requiring expensive vendor licenses. While commercial tools can still be used if available, they are not mandatory. For simulation, either GHDL or NVC can be used. Testbenches are written using the VUnit framework, which is also open source. For linting, Open Logic uses VSG, another open-source tool. In addition, Open Logic recently added official support for open-source synthesis using Yosys and implementation using nextpnr, which are used for the CologneChip vendor.
